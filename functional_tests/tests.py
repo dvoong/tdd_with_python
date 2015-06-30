@@ -79,4 +79,6 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Satisfied, they both go back to sleep
 
-
+## Notes
+# import time
+# time.sleep(3)
