@@ -12,9 +12,8 @@ class ItemFormTest(TestCase):
             [EMPTY_LIST_ERROR]
             )
 
-#     def test_form_renders_item_text_input(self):
-#         form = ItemForm()
-#         self.fail(form.as_p())
+    def test_form_renders_item_text_input(self):
+        pass
 
     def test_form_item_input_has_placeholder_and_css_classess(self):
         form = ItemForm()
