@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from lists.models import Item, List
+from lists.forms import ItemForm
 
 def new_list(request):
     list_ = List.objects.create()
@@ -34,4 +35,4 @@ def view_list(request, list_id):
     return render(request, 'lists/list.html', {'list': list_, 'error': error})
 
 def home_page(request):
-    return render(request, 'lists/home.html')
+    return render(request, 'lists/home.html', {'form': ItemForm()})

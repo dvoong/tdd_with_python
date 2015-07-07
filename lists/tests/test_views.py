@@ -4,7 +4,7 @@ from django.core.urlresolvers import resolve
 from django.test import TestCase
 from django.http import HttpRequest
 from lists.models import Item, List
-
+from lists.forms import ItemForm
 from lists.views import home_page
 
 class NewListTest(TestCase):
@@ -101,9 +101,11 @@ class HomePageTest(TestCase):
         found = resolve('/')
         self.assertEqual(found.func, home_page)
     
+    maxDiff = None
+
     def test_home_page_returns_correct_html(self):
         request = HttpRequest()
         response = home_page(request)
-        expected_html = render_to_string('lists/home.html')
-        self.assertEqual(response.content.decode(), expected_html)
+        expected_html = render_to_string('lists/home.html', {'form': ItemForm()})
+        self.assertMultiLineEqual(response.content.decode(), expected_html)
         
