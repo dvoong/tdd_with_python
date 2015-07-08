@@ -6,6 +6,7 @@ from django.http import HttpRequest
 from lists.models import Item, List
 from lists.forms import ItemForm, EMPTY_LIST_ERROR
 from lists.views import home_page
+from unittest import skip
 
 class NewListTest(TestCase):
     
@@ -46,6 +47,16 @@ class NewListTest(TestCase):
         self.assertRedirects(response, '/lists/%d/' % (new_list.id,))
 
 class ListViewTest(TestCase):
+
+    @skip
+    def test_duplicate_item_validation_errors_end_up_on_lists_page(self):
+        list1 = List.objects.create()
+        item1 = Item.objects.create(list=list1, text='textey')
+        response = self.client.post('/lists/%d/' % (list1.id), data={'text': 'textey'})
+        expected_error = escape("You've already got this in your list")
+        self.assertContains(response, expected_error)
+        self.assertTemplateUsed(response, 'lists/list.html')
+        self.asertEqual(Item.objects.all().count(), 1)
 
     def post_invalid_input(self):
         list_ = List.objects.create()
