@@ -1,5 +1,4 @@
 from django.test import TestCase
-
 from lists.forms import ItemForm, EMPTY_LIST_ERROR, ExistingListItemForm, DUPLICATE_ITEM_ERROR
 from lists.models import List, Item
 
