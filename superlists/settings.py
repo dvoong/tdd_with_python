@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'lists',
     'django_nose',
+    'accounts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -107,4 +108,3 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'superlists', 'static'),
     )
-print(STATICFILES_DIRS)
