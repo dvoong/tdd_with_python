@@ -104,3 +104,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
 # TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'superlists', 'static'),
+    )
+print(STATICFILES_DIRS)
