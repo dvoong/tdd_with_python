@@ -25,4 +25,6 @@ def view_list(request, list_id):
     return render(request, 'lists/list.html', {'list': list_, 'form': form})
 
 def home_page(request):
+    import logging
+    logging.info('home_page')
     return render(request, 'lists/home.html', {'form': ItemForm()})
