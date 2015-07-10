@@ -9,10 +9,9 @@ def _get_manage_dot_py(host):
 def reset_database():
     run('{manage_py} flush --noinput'.format(
             manage_py=_get_manage_dot_py(env.host),
-            email=email,
             )
         )
 
 def create_session_on_server(email):
-    session_key = run('{manage_py} create_session email={email}'.format(manage_py=_get_manage_dot_py, email=email))
+    session_key = run('{manage_py} create_session email="{email}"'.format(manage_py=_get_manage_dot_py(env.host), email=email))
     print(session_key)

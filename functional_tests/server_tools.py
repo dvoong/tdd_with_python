@@ -3,7 +3,8 @@ import subprocess
 THIS_FOLDER = path.dirname(path.abspath(__file__))
 
 def create_session_on_server(host, email):
-    return subprocess.check_output(
+    print('server_tools.py: create_session_on_server, host: {}, email: {}'.format(host, email))
+    session_key = subprocess.check_output(
         [
             'fab',
             'create_session_on_server:email={}'.format(email),
@@ -11,7 +12,10 @@ def create_session_on_server(host, email):
             '--hide=everything,status',
             ],
         cwd=THIS_FOLDER
-        ).decode().strip()
+        )
+    session_key = session_key.decode().strip()
+    print('server_tools.py: create_session_on_server, session_key: {}\n'.format(session_key))
+    return session_key
 
 def reset_database(host):
     subprocess.check_call(
