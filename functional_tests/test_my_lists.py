@@ -30,4 +30,7 @@ class MyListsTest(FunctionalTest):
         self.create_pre_authenticated_session(email)
 
         self.browser.get(self.server_url)
+        print('test_my_lists.py: cookies: {}'.format(self.browser.get_cookies()))
         self.wait_to_be_logged_in(email)
+
+        
