@@ -19,5 +19,13 @@ def create_pre_authenticated_session(email):
     session[SESSION_KEY] = user.pk
     session[BACKEND_SESSION_KEY] = settings.AUTHENTICATION_BACKENDS[0]
     session.save()
+#     print('create_session.py: backend_session: {}'.format(session))
+#     print('SESSION_KEY:', SESSION_KEY)
+#     print('session[SESSION_KEY]:', session[SESSION_KEY])
+#     print('BACKEND_SESSION_KEY:', BACKEND_SESSION_KEY)
+#     print('session[BACKEND_SESSION_KEY]:', session[BACKEND_SESSION_KEY])
+#     print('session.keys():', session.keys())
+#     print('session.session_key:', session.session_key)
+#     print('type(session.session_key)', type(session.session_key))
     return session.session_key
 
