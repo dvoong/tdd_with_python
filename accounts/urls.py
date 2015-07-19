@@ -1,7 +1,9 @@
-from django.conf.urls import include, url
-from django.contrib import admin
+from django.conf.urls import url
+from django.contrib.auth.views import logout
+from accounts import views
 
 urlpatterns = [
-    url(r'^login$', 'accounts.views.persona_login', name='persona_login'),
-    url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout')
+    url(r'^login$', views.persona_login, name='persona_login'),
+    url(r'^logout$', logout, {'next_page': '/'}, name='logout'),
 ]
+

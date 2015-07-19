@@ -11,9 +11,12 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='item',
-            name='list',
-            field=models.ForeignKey(to='lists.List', null=True, default=None),
+        migrations.AlterModelOptions(
+            name='item',
+            options={'ordering': ('id',)},
+        ),
+        migrations.AlterUniqueTogether(
+            name='item',
+            unique_together=set([('list', 'text')]),
         ),
     ]
