@@ -4,6 +4,7 @@ import random
 
 
 REPO_URL = 'https://github.com/dvoong/tdd_with_python'
+REPO_BRANCH = 'using_author_code'
 
 def deploy():
     site_folder = '/home/%s/sites/%s' % (env.user, env.host)
@@ -24,7 +25,10 @@ def _get_latest_source(source_folder):
     if exists(source_folder + '/.git'):
         run('cd %s && git fetch' % (source_folder,))
     else:
-        run('git clone %s %s' % (REPO_URL, source_folder))
+        if REPO_BRANCH == None:
+            run('git clone %s %s' % (REPO_URL, source_folder))
+        else:
+            run('git clone %s --branch %s --single-branch %s' % (REPO_URL, REPO_BRANCH, source_folder))
     current_commit = local("git log -n 1 --format=%H", capture=True)
     run('cd %s && git reset --hard %s' % (source_folder, current_commit))
 
