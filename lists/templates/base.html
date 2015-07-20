@@ -16,7 +16,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <a class="navbar-brand" href="/">Superlists</a>
         {% if user.email %}
-	<ul>
+	<ul class="nav navbar-nav">
 	  <li><a href="{% url 'my_lists' user.email %}">My lists</a></li>
 	</ul>
             <a class="btn navbar-btn navbar-right" id="id_logout" href="{% url 'logout' %}">Log out</a>
