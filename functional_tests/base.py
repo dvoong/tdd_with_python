@@ -9,6 +9,7 @@ import sys
 from .server_tools import reset_database
 from .management.commands.create_session import create_pre_authenticated_session
 from django.conf import settings
+from selenium.common.exceptions import WebDriverException
 
 DEFAULT_WAIT = 5
 

@@ -13,6 +13,19 @@ from lists.forms import (
 )
 from lists.models import Item, List
 
+class ShareListTest(TestCase):
+
+    def test_post_redirects_to_lists_page(self):
+        user = User.objects.create(email='user@b.com')
+        list_ = List.create_new('new list')
+        response = self.client.post('/lists/1/share', data={'email': 'user@b.com'})
+        self.assertRedirects(response, '/lists/%d/' % (1,))
+
+    def test_post_shares_with_a_user(self):
+        list_ = List.create_new('new list')
+        user = User.objects.create(email='user@a.com')
+        self.client.post('/lists/1/share', data={'email': user.email})
+        self.assertEqual([user], list(list_.shared_with.all()))
 
 class HomePageTest(TestCase):
 

@@ -6,12 +6,14 @@ class HomePage(object):
         self.test = test
 
     def go_to_home_page(self):
+        print(self.test.server_url)
         self.test.browser.get(self.test.server_url)
         self.test.wait_for(self.get_item_input)
+        print(self.test.browser.current_url)
         return self
 
     def go_to_my_lists_page(self):
-        self.test.browser.find_elemnt_by_link_text('My lists').click()
+        self.test.browser.find_element_by_link_text('My lists').click()
         self.test.wait_for(lambda: self.test.assertEqual(
             self.test.browser.find_element_by_tag_name('h1').text,
             'My Lists'

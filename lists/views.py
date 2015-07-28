@@ -5,6 +5,13 @@ User = get_user_model()
 from lists.forms import ExistingListItemForm, ItemForm, NewListForm
 from lists.models import List
 
+def share_list(request, list_id):
+    list_ = List.objects.get(id=list_id)
+    user = User.objects.get(email=request.POST['email'])
+    list_.shared_with.add(user)
+    list_.save()
+    return redirect(list_)
+
 def home_page(request):
     return render(request, 'home.html', {'form': ItemForm()})
 

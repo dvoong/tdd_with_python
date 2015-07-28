@@ -8,6 +8,27 @@
     <table id="id_list_table" class="table">
         {% for item in list.item_set.all %}
             <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
-        {% endfor %}
+            {% endfor %}
     </table>
+
 {% endblock %}
+
+{% block extra_content %}    
+    <div class="row">
+      <div class="col-md-6">
+	<ul>
+	  {% for user in list.shared_with.all %}
+	  <li class="list-sharee">{{ user.email }}</li>
+	  {% endfor %}
+	</ul>
+      </div>
+      <div class="col-md-6">
+	<form action="/lists/{{ list.id }}/share" method="post"> {% csrf_token %}
+	  <input type="email" name="email" placeholder="your-friend@example.com" />
+	</form>
+      </div>
+      <p id="id_list_owner">{{ list.owner.email }}</p>
+    </div>
+{% endblock %}    
+
+    

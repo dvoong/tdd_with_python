@@ -63,6 +63,12 @@ class ItemModelTest(TestCase):
 
 class ListModelTest(TestCase):
 
+    def test_shared_with_add(self):
+        user = User.objects.create(email="a@b.com")
+        list_ = List.objects.create()
+        list_.shared_with.add(user)
+        self.assertEqual([user], list(list_.shared_with.all()))
+        
     def test_get_absolute_url(self):
         list_ = List.objects.create()
         self.assertEqual(list_.get_absolute_url(), '/lists/%d/' % (list_.id,))
