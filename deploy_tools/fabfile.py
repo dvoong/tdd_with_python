@@ -5,6 +5,7 @@ import random
 
 REPO_URL = 'https://github.com/dvoong/tdd_with_python'
 REPO_BRANCH = 'using_author_code'
+REPO_BRANCH = None
 
 def deploy():
     site_folder = '/home/%s/sites/%s' % (env.user, env.host)
